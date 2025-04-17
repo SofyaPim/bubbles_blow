@@ -103,6 +103,24 @@ class Effect {
     window.addEventListener('mouseup', e => {
       this.mouse.pressed = false;
     });
+     
+window.addEventListener('touchstart', e => {
+  this.mouse.pressed = true; 
+  this.mouse.x = e.touches[0].clientX;
+  this.mouse.y = e.touches[0].clientY;
+});
+
+window.addEventListener('touchend', e => {
+  this.mouse.pressed = false; 
+});
+
+window.addEventListener('touchmove', e => {
+  
+  if (this.mouse.pressed) {
+      this.mouse.x = e.touches[0].clientX; 
+      this.mouse.y = e.touches[0].clientY; 
+  }
+});
   }
   createParticles() {
     for (let i = 0; i < this.numberOfParticles; i++) {
